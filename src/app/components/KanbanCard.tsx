@@ -44,19 +44,19 @@ export function KanbanCard({ task, assignedUser, onEdit, onDelete, onMove, index
   return (
     <div
       ref={(node) => drag(drop(node))}
-      className={`bg-white border border-gray-200 rounded-lg p-3 cursor-move hover:shadow-md transition-shadow group ${
+      className={`bg-card border border-primary/20 rounded-xl p-3 cursor-move hover:shadow-[0_4px_12px_rgba(2,106,167,0.12)] hover:border-primary/30 transition-all group ${
         isDragging ? 'opacity-50' : ''
       }`}
     >
       <div className="flex items-start justify-between mb-2">
-        <p className="text-sm text-gray-900 flex-1">{task.description}</p>
+        <p className="text-sm text-foreground flex-1">{task.description}</p>
         <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity ml-2">
           <button
             onClick={(e) => {
               e.stopPropagation();
               onEdit();
             }}
-            className="p-1 hover:bg-gray-100 rounded"
+            className="p-1 hover:bg-primary/10 rounded-lg"
           >
             <Pencil className="size-3 text-gray-600" />
           </button>
@@ -65,7 +65,7 @@ export function KanbanCard({ task, assignedUser, onEdit, onDelete, onMove, index
               e.stopPropagation();
               onDelete();
             }}
-            className="p-1 hover:bg-red-50 rounded"
+            className="p-1 hover:bg-destructive/10 rounded"
           >
             <Trash2 className="size-3 text-red-600" />
           </button>
@@ -73,7 +73,7 @@ export function KanbanCard({ task, assignedUser, onEdit, onDelete, onMove, index
       </div>
 
       <div className="flex items-center justify-between text-xs">
-        <div className="flex items-center gap-1 text-gray-500">
+        <div className="flex items-center gap-1 text-muted-foreground">
           <Calendar className="size-3" />
           <span>{formatDate(task.startDate)}</span>
           <span>-</span>
@@ -82,7 +82,7 @@ export function KanbanCard({ task, assignedUser, onEdit, onDelete, onMove, index
 
         {assignedUser && (
           <div className="flex items-center gap-1">
-            <div className="size-6 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs">
+            <div className="size-6 bg-gradient-to-br from-primary to-primary-hover rounded-full flex items-center justify-center text-white text-xs">
               {assignedUser.name.charAt(0)}
             </div>
           </div>

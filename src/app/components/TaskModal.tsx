@@ -46,17 +46,16 @@ export function TaskModal({ isOpen, onClose, onSave, participants, task }: TaskM
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-md shadow-xl">
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900">
+      <div className="bg-card rounded-2xl border border-primary/20 w-full max-w-md shadow-xl overflow-hidden">
+        <div className="flex items-center justify-between px-5 py-4 bg-primary">
+          <h3 className="text-lg font-semibold text-primary-foreground">
             {task ? 'Editar Tarea' : 'Nueva Tarea'}
           </h3>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-gray-100 rounded"
+            className="p-2 hover:bg-white/15 rounded-xl transition-colors"
           >
-            <X className="size-5 text-gray-500" />
+            <X className="size-5 text-primary-foreground" />
           </button>
         </div>
 
@@ -64,13 +63,13 @@ export function TaskModal({ isOpen, onClose, onSave, participants, task }: TaskM
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1">
               Descripción de la tarea *
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
               rows={3}
               placeholder="Describe la tarea..."
               required
@@ -79,28 +78,28 @@ export function TaskModal({ isOpen, onClose, onSave, participants, task }: TaskM
 
           {/* Start Date */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1">
               Fecha de inicio *
             </label>
             <input
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               required
             />
           </div>
 
           {/* End Date */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1">
               Fecha de fin *
             </label>
             <input
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               min={startDate}
               required
             />
@@ -108,13 +107,13 @@ export function TaskModal({ isOpen, onClose, onSave, participants, task }: TaskM
 
           {/* Assigned To */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1">
               Asignar a *
             </label>
             <select
               value={assignedTo}
               onChange={(e) => setAssignedTo(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               required
             >
               <option value="">Seleccionar persona...</option>
@@ -130,14 +129,14 @@ export function TaskModal({ isOpen, onClose, onSave, participants, task }: TaskM
           <div className="flex gap-3 pt-2">
             <button
               type="submit"
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary-hover"
             >
               {task ? 'Guardar Cambios' : 'Crear Tarea'}
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+              className="px-4 py-2 bg-secondary text-foreground rounded-lg hover:bg-secondary/80"
             >
               Cancelar
             </button>

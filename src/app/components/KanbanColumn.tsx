@@ -52,12 +52,12 @@ export function KanbanColumn({
   return (
     <div
       ref={drop}
-      className={`bg-white rounded-lg w-80 flex-shrink-0 flex flex-col max-h-full border border-gray-200 transition-colors ${
-        isOver ? 'ring-2 ring-blue-400 border-blue-400' : ''
+      className={`bg-card rounded-xl w-80 flex-shrink-0 flex flex-col max-h-full border border-primary/25 shadow-[0_2px_8px_rgba(2,106,167,0.08)] transition-colors ${
+        isOver ? 'ring-2 ring-primary border-primary' : ''
       }`}
     >
       {/* Column Header */}
-      <div className="p-4 border-b border-gray-200">
+      <div className="p-4 border-b border-primary/20 bg-primary/5 rounded-t-xl">
         <div className="flex items-center justify-between mb-2">
           {isEditingTitle ? (
             <input
@@ -72,21 +72,21 @@ export function KanbanColumn({
                   setIsEditingTitle(false);
                 }
               }}
-              className="flex-1 px-2 py-1 border border-gray-300 rounded text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 px-2 py-1 border border-border rounded text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary"
               autoFocus
             />
           ) : (
             <div className="flex items-center gap-2 flex-1 group">
-              <h3 className="text-sm font-semibold text-gray-900">{column.title}</h3>
+              <h3 className="text-sm font-semibold text-foreground">{column.title}</h3>
               <button
                 onClick={() => setIsEditingTitle(true)}
-                className="opacity-0 group-hover:opacity-100 p-1 hover:bg-gray-100 rounded"
+                className="opacity-0 group-hover:opacity-100 p-1 hover:bg-secondary rounded"
               >
-                <Pencil className="size-3 text-gray-500" />
+                <Pencil className="size-3 text-muted-foreground" />
               </button>
             </div>
           )}
-          <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+          <span className="text-xs bg-primary/15 text-primary font-medium px-2 py-1 rounded-full">
             {column.tasks.length}
           </span>
         </div>
@@ -111,10 +111,10 @@ export function KanbanColumn({
       </div>
 
       {/* Add Task Button */}
-      <div className="p-3 border-t border-gray-200">
+      <div className="p-3 border-t border-border">
         <button
           onClick={onAddTask}
-          className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+          className="w-full flex items-center gap-2 px-3 py-2 text-sm text-primary hover:bg-primary/10 rounded-xl transition-colors font-medium"
         >
           <Plus className="size-4" />
           Agregar tarea

@@ -156,19 +156,19 @@ export function ProjectBoard() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="size-full flex flex-col bg-gradient-to-br from-blue-50 to-indigo-50">
-        {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-6 py-4">
+      <div className="size-full flex flex-col bg-background">
+        {/* Header azul */}
+        <div className="bg-primary border-b border-primary/30 px-6 py-4 shadow-md flex-shrink-0">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate('/projects')}
-              className="p-2 hover:bg-gray-100 rounded-lg"
+              className="p-2 hover:bg-white/15 rounded-xl transition-colors"
             >
-              <ArrowLeft className="size-5 text-gray-600" />
+              <ArrowLeft className="size-5 text-primary-foreground" />
             </button>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">{project.name}</h1>
-              <p className="text-sm text-gray-500">
+              <h1 className="text-xl font-bold text-primary-foreground">{project.name}</h1>
+              <p className="text-sm text-white/90">
                 {uniqueParticipants.length} participantes · {project.columns.reduce((acc, col) => acc + col.tasks.length, 0)} tareas
               </p>
             </div>

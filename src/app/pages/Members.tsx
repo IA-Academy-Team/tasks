@@ -14,20 +14,19 @@ export function Members() {
   }
 
   return (
-    <div className="size-full flex flex-col bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-8 py-6">
-        <h2 className="text-2xl font-bold text-gray-900">Miembros</h2>
-        <p className="text-sm text-gray-500 mt-1">Gestiona usuarios y grupos del sistema</p>
+    <div className="size-full flex flex-col bg-background">
+      {/* Header azul */}
+      <div className="bg-primary border-b border-primary/30 px-8 py-6 shadow-md">
+        <h2 className="text-2xl font-bold text-primary-foreground">Miembros</h2>
+        <p className="text-sm text-white/90 mt-1">Gestiona usuarios y grupos del sistema</p>
         
-        {/* Tabs */}
-        <div className="flex gap-1 mt-6 border-b border-gray-200">
+        <div className="flex gap-1 mt-6 border-b border-white/20">
           <button
             onClick={() => setActiveTab('users')}
-            className={`flex items-center gap-2 px-4 py-2 border-b-2 transition-colors ${
+            className={`flex items-center gap-2 px-4 py-2.5 border-b-2 -mb-px transition-colors ${
               activeTab === 'users'
-                ? 'border-blue-600 text-blue-600 font-medium'
-                : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-primary-foreground text-primary-foreground font-medium'
+                : 'border-transparent text-white/80 hover:text-white'
             }`}
           >
             <UserCircle className="size-4" />
@@ -35,10 +34,10 @@ export function Members() {
           </button>
           <button
             onClick={() => setActiveTab('groups')}
-            className={`flex items-center gap-2 px-4 py-2 border-b-2 transition-colors ${
+            className={`flex items-center gap-2 px-4 py-2.5 border-b-2 -mb-px transition-colors ${
               activeTab === 'groups'
-                ? 'border-blue-600 text-blue-600 font-medium'
-                : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-primary-foreground text-primary-foreground font-medium'
+                : 'border-transparent text-white/80 hover:text-white'
             }`}
           >
             <UsersIcon className="size-4" />
