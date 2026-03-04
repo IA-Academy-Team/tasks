@@ -1,0 +1,40 @@
+# Dependencias
+node_modules/
+
+# Build y salida
+dist/
+build/
+*.local
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Logs y caché
+*.log
+npm-debug.log*
+.pnpm-debug.log*
+.cache/
+.parcel-cache/
+.vite/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDE / editores
+.idea/
+*.swp
+*.swo
+*~
+
+# Cobertura y tests
+coverage/
+.nyc_output/
+
+# Temporal
+*.tmp
+.temp/
+tmp/
+temp/
