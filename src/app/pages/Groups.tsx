@@ -74,7 +74,7 @@ export function Groups() {
     const members = Array.from(membersById.values());
     return (
       <div className="size-full overflow-auto bg-background">
-        <div className="max-w-4xl mx-auto p-8">
+        <div className="w-full p-6 md:p-8">
           <button
             type="button"
             onClick={() => setSelectedGroupId(null)}
@@ -138,17 +138,29 @@ export function Groups() {
 
   return (
     <div className="size-full overflow-auto bg-background">
-      <div className="max-w-4xl mx-auto p-8">
+      <div className="w-full p-6 md:p-8">
+        {/* Header: título + botón Agregar grupo (solo + con tooltip) */}
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-semibold text-foreground">Grupos</h2>
+          {!isCreating && (
+            <div className="relative group">
+              <button
+                type="button"
+                onClick={() => setIsCreating(true)}
+                className="size-10 flex items-center justify-center bg-primary text-primary-foreground rounded-xl hover:bg-primary-hover transition-colors shadow-md"
+                aria-label="Agregar grupo"
+              >
+                <Plus className="size-5" />
+              </button>
+              <span className="absolute right-0 top-full mt-2 px-2 py-1 bg-foreground text-primary-foreground text-xs rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
+                Agregar grupo
+              </span>
+            </div>
+          )}
+        </div>
+
         {/* Create Group Form */}
-        {!isCreating ? (
-          <button
-            onClick={() => setIsCreating(true)}
-            className="mb-6 flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-primary-hover"
-          >
-            <Plus className="size-4" />
-            Crear Grupo
-          </button>
-        ) : (
+        {isCreating && (
           <div className="bg-card rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
             <h3 className="text-lg font-semibold text-foreground mb-4">Crear Nuevo Grupo</h3>
 
@@ -258,42 +270,43 @@ export function Groups() {
           </div>
         )}
 
-        {/* Lista de grupos: clic abre vista aparte */}
-        <div className="space-y-3">
+        {/* Lista de grupos: 4 por fila, clic abre vista aparte */}
+        <div className={groups.length === 0 ? '' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'}>
           {groups.length === 0 ? (
-            <div className="bg-card rounded-lg border border-gray-200 p-8 text-center">
-              <UsersIcon className="size-12 text-gray-300 mx-auto mb-3" />
-              <p className="text-gray-500">No hay grupos creados</p>
+            <div className="bg-card rounded-xl border border-primary/20 p-8 text-center">
+              <UsersIcon className="size-12 text-muted-foreground mx-auto mb-3" />
+              <p className="text-muted-foreground">No hay grupos creados</p>
             </div>
           ) : (
             groups.map((group) => {
               const memberCount = getGroupMemberCount(group);
               return (
-              <div
-                key={group.id}
-                onClick={() => handleGroupClick(group.id)}
-                className="bg-card rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer flex items-center justify-between group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <UsersIcon className="size-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground group-hover:text-primary">{group.name}</h3>
-                    <p className="text-sm text-gray-500">
-                      {memberCount} miembro{memberCount !== 1 ? 's' : ''} — clic para ver integrantes
-                    </p>
-                  </div>
-                </div>
-                <button
-                  onClick={(e) => handleDeleteGroup(e, group.id)}
-                  className="p-2 hover:bg-destructive/10 rounded-lg opacity-80 hover:opacity-100"
-                  title="Eliminar grupo"
+                <div
+                  key={group.id}
+                  onClick={() => handleGroupClick(group.id)}
+                  className="bg-card rounded-xl border border-primary/25 p-4 hover:shadow-[0_4px_14px_rgba(2,106,167,0.12)] hover:border-primary/40 transition-all cursor-pointer flex flex-col group relative"
                 >
-                  <Trash2 className="size-4 text-destructive" />
-                </button>
-              </div>
-            );
+                  <button
+                    onClick={(e) => handleDeleteGroup(e, group.id)}
+                    className="absolute top-2 right-2 p-1.5 hover:bg-destructive/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    title="Eliminar grupo"
+                  >
+                    <Trash2 className="size-4 text-destructive" />
+                  </button>
+                  <div className="flex items-center gap-3 pr-8">
+                    <div className="p-2 bg-primary/15 rounded-xl shrink-0">
+                      <UsersIcon className="size-5 text-primary" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-semibold text-foreground group-hover:text-primary truncate">{group.name}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {memberCount} miembro{memberCount !== 1 ? 's' : ''}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2">Clic para ver integrantes</p>
+                </div>
+              );
             })
           )}
         </div>
